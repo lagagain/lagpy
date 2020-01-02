@@ -1,0 +1,9 @@
+* lagpy
+My Python Package
+
+* tests
+
+#+begin_src sh
+python3 -m unittest -v tests
+python3 -m lagpy.functools.Callable
+#+end_src
