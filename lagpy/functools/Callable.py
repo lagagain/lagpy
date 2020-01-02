@@ -6,11 +6,12 @@ class CallableMeta(type):
     A MetaClass, and implement the method __call__ of Callable Class
     """
     def __call__(defineclz, *args, **kargs):
-        """# Callable Class
-            Accept a function and arguments(include keyword arguments)
+        """
+        # Callable Class
+        Accept a function and arguments(include keyword arguments)
         which will pass args to the function.
-            You can get back the value by giving None replace function.
-            """
+        You can get back the value by giving None replace function.
+        """
         class __callableClass:
             def __call__(self, f = None, *args, **kargs):
                 """
@@ -33,6 +34,7 @@ class CallableMeta(type):
 
 class Callable(metaclass = CallableMeta):
     """
+    ```
     >>> class CallableList(list, Callable):
     ...     pass
     ...
@@ -41,6 +43,8 @@ class Callable(metaclass = CallableMeta):
     [1, 2, 3, 4, 5, 6]
     >>> l(sum)
     21
+    >>>
+    ```
     """
     pass
 
@@ -57,6 +61,7 @@ class CallableWrapper(Proxy, Callable):
     You can get the original wrap value using call with None replace
     function.
 
+    ```
     >>> l = CallableWrapper([1,2,3,4,5,6])
     >>> l(sum)
     21
@@ -65,6 +70,8 @@ class CallableWrapper(Proxy, Callable):
     [1, 2, 3, 4, 5, 6]
     >>> l(sum)
     21
+    >>>
+    ```
     """
     def __init__(self, wrap, *args, **kargs):
         self.wrap = wrap
@@ -79,7 +86,7 @@ class CallableWrapper(Proxy, Callable):
     def new(wrap, *args, **kargs):
         """
         The obj with using CallableWrapper.new are almost same like
-    origianl itself, and only some type not, like None, NoneType, function....
+        origianl itself, and only some type not, like None, NoneType, function....
         """
         __callable = CallableWrapper.__genClass(wrap)
         return __callable(wrap, *args, **kargs)
