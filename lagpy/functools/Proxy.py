@@ -7,6 +7,9 @@ class ProxyOptException:
         return "<ProxyOptException Can't find {} operator>".format(self.opt)
 
 class Proxy:
+    """
+    Proxy
+    """
     __handler = None
     def __init__(self, handler:object):
         self.__handler = handler
@@ -20,5 +23,10 @@ class Proxy:
         raise ProxyOptException(opt)
 
 for opt in operator.__dict__.keys():
-    if opt in ["__name__"]:continue
+    if opt in ["__name__", ]:continue
     setattr(Proxy, opt, Proxy.Cproxy(opt))
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
