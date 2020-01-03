@@ -16,7 +16,32 @@ class TestCallableMeta(unittest.TestCase):
     pass
 
 class TestCallable(unittest.TestCase):
-    pass
+    def testInherited(self):
+        self.assertTrue(issubclass(CallableWrapper, Callable))
+        self.assertTrue(isinstance(CallableWrapper(1), Callable)) # int
+        self.assertTrue(isinstance(CallableWrapper(1.0), Callable)) # float
+        self.assertTrue(isinstance(CallableWrapper("hello"), Callable)) # string
+        self.assertTrue(isinstance(CallableWrapper(True), Callable)) # bool
+        self.assertTrue(isinstance(CallableWrapper([1,2,3,4]), Callable)) # list
+        self.assertTrue(isinstance(CallableWrapper((1,2,3,4,)), Callable)) # tuple
+        self.assertTrue(isinstance(CallableWrapper({1,2,3,4,5,}), Callable)) # set
+        self.assertTrue(isinstance(CallableWrapper({1:1,2:2,3:3,4:4,}), Callable)) # dict
+        self.assertTrue(isinstance(CallableWrapper(None), Callable)) # None
+        self.assertTrue(isinstance(CallableWrapper(lambda :None), Callable)) # function
+        self.assertTrue(isinstance(CallableWrapper(type), Callable)) # type
+        ### CallableWrapper.new
+        self.assertTrue(isinstance(CallableWrapper.new(1), Callable)) # int
+        self.assertTrue(isinstance(CallableWrapper.new(1.0), Callable)) # float
+        self.assertTrue(isinstance(CallableWrapper.new("hello"), Callable)) # string
+        self.assertTrue(isinstance(CallableWrapper.new(True), Callable)) # bool
+        self.assertTrue(isinstance(CallableWrapper.new([1,2,3,4]), Callable)) # list
+        self.assertTrue(isinstance(CallableWrapper.new((1,2,3,4,)), Callable)) # tuple
+        self.assertTrue(isinstance(CallableWrapper.new({1,2,3,4,5,}), Callable)) # set
+        self.assertTrue(isinstance(CallableWrapper.new({1:1,2:2,3:3,4:4,}), Callable)) # dict
+        self.assertTrue(isinstance(CallableWrapper.new(None), Callable)) # None
+        self.assertTrue(isinstance(CallableWrapper.new(lambda :None), Callable)) # function
+        # self.assertTrue(isinstance(CallableWrapper.new(int), Callable)) # type
+
 
 class TestCallableWrapper(unittest.TestCase):
     pass
